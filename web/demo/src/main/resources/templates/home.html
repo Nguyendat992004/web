@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang Chủ</title>
+</head>
+<body>
+<h1>HUTECH Simple Website</h1>
+
+<div th:if="${loggedIn}">
+    <p>Welcome, <b th:text="${username}">User</b>!</p>
+
+    <p>Go to <a th:href="@{/math}">Math Exercise</a></p>
+
+    <p><a th:href="@{/logout}">Logout</a></p>
+</div>
+
+<div th:unless="${loggedIn}">
+    <p>You are not logged in.</p>
+    <a th:href="@{/login}">Login</a>
+</div>
+
+<div th:replace="fragments :: myFooter"></div>
+</body>
+</html>

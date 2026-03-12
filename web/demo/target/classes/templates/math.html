@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Page</title>
+</head>
+<body>
+<h1>Prime Number Finder</h1>
+
+<a th:href="@{/}">Back to Home</a>
+<hr/>
+
+<form th:action="@{/math}" method="post">
+  <label>Enter number (N):</label>
+  <input type="number" name="n" th:value="${inputN}" required/>
+  <button type="submit">Find Primes</button>
+</form>
+
+<div th:if="${error}" style="color: red; margin-top: 10px;">
+  <p th:text="${error}"></p>
+</div>
+
+<div th:if="${primes}">
+  <h3>Primes from 2 to <span th:text="${inputN}"></span>:</h3>
+  <ul>
+    <li th:each="num : ${primes}" th:text="${num}"></li>
+  </ul>
+  <p th:if="${primes.empty} and ${error == null}">No prime numbers found.</p>
+</div>
+
+<div th:replace="fragments :: myFooter"></div>
+</body>
+</html>
